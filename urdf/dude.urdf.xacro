@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<robot name="dude_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find ros_dude)/urdf/materials.urdf" />
+  <xacro:include filename="$(find ros_dude)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find ros_dude)/urdf/motor.urdf.xacro" />
+  <xacro:include filename="$(find ros_dude)/urdf/sensors/asus_xtion_pro.urdf.xacro"/>
+  <!-- Included URDF/XACRO Files -->
+
+  <!-- Global properties -->
+  <property name="M_PI" value="3.14159"/>
+  <!-- Global properties -->
+  
+  <!-- Sprockets params -->
+  <property name="wheel_radius" value="0.0365"/>
+  <property name="wheel_leght" value="0.01"/>
+  <property name="wheel_offset_x" value="-0.00"/>
+  <property name="wheel_offset_y" value="0.08"/>
+  <property name="wheel_offset_z" value="${wheel_radius}"/>
+  <!-- Sprockets params -->
+
+  <!-- Asus Xtion params -->
+  <property name="cam_px" value="0.02" />
+  <property name="cam_py" value="0.022" />
+  <property name="cam_pz" value="0.145" />
+  <property name="cam_or" value="0" />
+  <property name="cam_op" value="0" />
+  <property name="cam_oy" value="0" />
+  <!-- Asus Xtion params -->
+
+  <!-- base_link -->
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length=".001" radius="0.05"/>
+      </geometry>
+      <material name="Red" />
+    </visual>
+  </link>
+  <!-- base_link -->
+
+  <!-- Body chassis -->
+  <link name="body_bottom_chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.19 0.18 .055"/>
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+  </link>
+  <joint name="Body_bottom" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="body_bottom_chassis_link"/>
+    <origin rpy="0 0 0" xyz="-${wheel_radius+0.09+0.01} 0 ${wheel_radius*2-0.0275}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="body_bottom_chassis_alpha_link">
+    <visual>
+      <geometry>
+        <box size="0.075 0.135 .055"/>
+      </geometry>
+      <material name="Yellow-Aplha" />
+    </visual>
+  </link>
+  <joint name="Body_bottom_alpha" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="body_bottom_chassis_alpha_link"/>
+    <origin rpy="0 0 0" xyz="-0.01 0 ${wheel_radius*2-0.0275}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="body_top_chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.055 0.11 .045"/>
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+  </link>
+  <joint name="Body_top" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="body_top_chassis_link"/>
+    <origin rpy="0 0 0" xyz="0 0 ${wheel_radius*2+0.0225}"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="asus_support_link">
+    <visual>
+      <geometry>
+        <box size="0.015 0.015 .015"/>
+      </geometry>
+      <material name="Black" />
+    </visual>
+  </link>
+  <joint name="Asus_support" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="body_top_chassis_link"/>
+    <child link="asus_support_link"/>
+    <origin rpy="0 0 0" xyz="${cam_px-0.01725} 0 0.030"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  <!-- Body chassis --> 
+
+  <!-- Jetson -->
+  <link name="jetson_link">
+    <visual>
+      <geometry>
+        <box size="0.13 0.13 .01"/>
+      </geometry>
+      <material name="Green" />
+    </visual>
+  </link>
+  <joint name="Jetson" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="body_bottom_chassis_link"/>
+    <child link="jetson_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>  
+  <!-- Jetson --> 
+
+  <!-- Asus Xtion Pro Live -->  
+  <xacro:sensor_asus_xtion_pro parent="base_link"/>
+  <!-- Asus Xtion Pro Live --> 
+
+  <!-- Motors and wheels -->
+  <xacro:dude_wheel position="Left">
+    <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:dude_wheel>
+  <xacro:dude_wheel position="Right">
+    <origin xyz="${wheel_offset_x} ${-wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:dude_wheel>
+  <xacro:dude_motor position="Left">
+    <origin xyz="${wheel_offset_x} ${wheel_offset_y-3*wheel_leght} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:dude_motor>
+  <xacro:dude_motor position="Right">
+    <origin xyz="${wheel_offset_x} ${-(wheel_offset_y-3*wheel_leght)} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:dude_motor>
+  <!-- Motors and wheels -->  
+
+</robot>
