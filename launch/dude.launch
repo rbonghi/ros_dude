@@ -1,23 +1,23 @@
 <launch>
-  <param name="/info/robot_name" value="4UDE" />
+  <param name="/info/robot_name" value="dude" />
 
-  <include file="$(find ros_dude)/launch/include/dude_description.launch" ns="dude" />
-  <include file="$(find ros_dude)/launch/include/rgbd.launch" ns="dude" />
+  <include file="$(find ros_dude)/launch/include/dude_description.launch" />
+  <!--<include file="$(find ros_dude)/launch/include/rgbd.launch" />-->
 
   <!-- LOAD bridge robot -->
   <group ns="dude">
       <rosparam command="load" file="$(find ros_dude)/dude_robot.yaml" />      
 
-      <node name="dude" pkg="serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" output="screen" respawn="true" respawn_delay="20" >
+      <node name="dude" pkg="ros_serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" output="screen" respawn="true" respawn_delay="20" >
           <remap from = "/dude/joint_states" to = "/joint_states" />
       </node>
+  </group>
+
+  <!--<node name="wandering" pkg="robot_wandering_demo_ros" type="robot_wandering_node" />-->
 
   <!-- ROSBRIDGE -->
   <!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
      <arg name="port" value="9090"/>
   </include>-->
-
-      <!-- <node name="myzharbot_tf" pkg="myzharbot_robot_ros" type="myzharbot_tf_node.cpp" /> -->
-  </group>
  
 </launch>
