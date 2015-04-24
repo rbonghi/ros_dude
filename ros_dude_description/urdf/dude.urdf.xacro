@@ -207,7 +207,7 @@
   <xacro:banebots_wheel position="left">
     <origin xyz="${wheel_offset_x} ${-wheel_offset_y} ${wheel_offset_z}" rpy="${M_PI/2} 0 0" />
   </xacro:banebots_wheel>
-  <xacro:banebots_wheel position="Right">
+  <xacro:banebots_wheel position="right">
     <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:banebots_wheel>
   <!-- Wheels -->  

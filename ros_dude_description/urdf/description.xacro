@@ -28,20 +28,4 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <xacro:include filename="$(find ros_dude_description)/urdf/dude.urdf.xacro" />
   <xacro:dude_robot />
 
-	<!--<gazebo>
-		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
-		  <alwaysOn>true</alwaysOn>
-		  <updateRate>10.0</updateRate>
-		  <leftJoint>Right</leftJoint>
-		  <rightJoint>Left</rightJoint>
-		  <wheelSeparation>0.5380</wheelSeparation>
-		  <wheelDiameter>0.2410</wheelDiameter>
-		  <torque>20</torque>
-		  <commandTopic>cmd_vel</commandTopic>
-		  <odometryTopic>odom</odometryTopic>
-		  <odometryFrame>odom</odometryFrame>
-		  <robotBaseFrame>base_link</robotBaseFrame>
-		</plugin>
-	</gazebo>-->
-
 </robot>

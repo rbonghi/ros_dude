@@ -37,6 +37,10 @@
     <child link="omniwheel_Link" />
     <axis xyz="0 -1 0" />
   </joint>
+  <gazebo reference="omniwheel">
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
 
   <link name="wheel1_omniwheel_Link">
     <inertial>
@@ -70,6 +74,10 @@
     <child link="wheel1_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel1_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel2_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732232 -1.94289029309402E-16 0" rpy="0 0 0" />
@@ -102,6 +110,10 @@
     <child link="wheel2_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel2_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel3_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732232 -1.66533453693773E-16 0" rpy="0 0 0" />
@@ -134,6 +146,10 @@
     <child link="wheel3_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel3_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel4_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732231 1.38777878078145E-16 0" rpy="0 0 0" />
@@ -166,6 +182,10 @@
     <child link="wheel4_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel4_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel5_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732234 8.32667268468867E-17 0" rpy="0 0 0" />
@@ -198,6 +218,10 @@
     <child link="wheel5_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel5_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel6_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732234 -2.77555756156289E-17 -1.73472347597681E-18" rpy="0 0 0" />
@@ -230,6 +254,10 @@
     <child link="wheel6_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel6_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel7_omniwheel_Link">
     <inertial>
       <origin xyz="0.0108739898732234 5.55111512312578E-17 0" rpy="0 0 0" />
@@ -262,6 +290,10 @@
     <child link="wheel7_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel7_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
   <link name="wheel8_omniwheel_Link">
     <inertial>
       <origin xyz="-0.010925 1.38777878078145E-16 1.73472347597681E-18" rpy="0 0 0" />
@@ -294,6 +326,9 @@
     <child link="wheel8_omniwheel_Link" />
     <axis xyz="-1 0 0" />
   </joint>
+  <gazebo reference="wheel8_omniwheel">
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   </xacro:macro>
 

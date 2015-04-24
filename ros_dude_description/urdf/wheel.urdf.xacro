@@ -6,20 +6,20 @@
     <link name="${position}_wheel_link">
 
       <visual>
-				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
-      <geometry>
-        <mesh filename="package://ros_dude_description/meshes/wheel/wheel_link.STL" />
-      </geometry>
-        <material name="Blue" />
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
+          <geometry>
+            <mesh filename="package://ros_dude_description/meshes/wheel/wheel_link.STL" />
+          </geometry>
+          <material name="Blue" />
       </visual>
       <collision>
-				<origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
-      <geometry>
-        <mesh filename="package://ros_dude_description/meshes/wheel/wheel_link.STL" />
-      </geometry>
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
+        <geometry>
+          <mesh filename="package://ros_dude_description/meshes/wheel/wheel_link.STL" />
+        </geometry>
       </collision>
       <inertial>
-        <origin xyz="-6.93889390390723E-18 6.54344632364662E-05 6.93889390390723E-18" rpy="0 0 0" />
+        <origin xyz="-6.93889390390723E-18 6.54344632364662E-05 6.93889390390723E-18" rpy="${M_PI/2} 0 0" />
         <mass value="0.0372140206710188" />
         <inertia
           ixx="1.12116949143941E-05"
@@ -31,13 +31,14 @@
       </inertial>
     </link>
 
-		<gazebo reference="${position}_wheel_link">
-			<mu1 value="1.0"/>
-			<mu2 value="1.0"/>
-			<kp value="10000000.0" />
-			<kd value="1.0" />
-			<fdir1 value="1 0 0"/>
-		</gazebo>
+    <gazebo reference="${position}_wheel_link">
+      <mu1 value="1.0"/>
+      <mu2 value="1.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+      <material>Gazebo/Blue</material>
+    </gazebo>
   
     <joint name="${position}" type="continuous">      
       <parent link="base_link"/>
