@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-
-<robot name="4UDE" xmlns:xacro="http://ros.org/wiki/xacro">
-
-  <xacro:include filename="$(find ros_dude)/urdf/dude.urdf.xacro" />
-  <xacro:dude_robot />
-
-</robot>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<robot name="sensor_asus_xtion_pro" xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Xacro properties -->
+  <xacro:property name="M_SCALE" value="0.001"/>
+  <xacro:property name="asus_xtion_pro_depth_rel_rgb_py" value="0.0270" />
+  <xacro:property name="asus_xtion_pro_cam_rel_rgb_py"   value="-0.0220" />
+  <xacro:property name="path" value="package://ros_dude_description/meshes/xtion" />
+
+  <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
+  <xacro:macro name="sensor_asus_xtion_pro" params="parent">
+
+  <link name="xtion_sensor_Link">
+    <inertial>
+      <origin xyz="-5.24598794596834E-05 -0.00118587892274831 -8.67757641544151E-07" rpy="0 0 0" />
+      <mass value="0.0157220883907246" />
+      <inertia
+        ixx="1.04171049584748E-05"
+        ixy="1.28442051710763E-10"
+        ixz="1.18967372459655E-11"
+        iyy="1.19900865482375E-05"
+        iyz="-6.38594842692275E-13"
+        izz="1.91603460288645E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path}/xtion_sensor_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path}/xtion_sensor_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="xtion_sensor" type="fixed">
+    <!--<origin xyz="0.00451431691853688 0 0.116837599999998" rpy="1.5707963267949 0 0" />-->
+    <origin xyz="${cam_px} ${cam_py} ${cam_pz}" rpy="${cam_or} ${cam_op} ${cam_oy}"/>
+    <parent link="${parent}" />
+    <child link="xtion_sensor_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="xtion_camera_Link">
+    <inertial>
+      <origin xyz="0.00279241240109677 0.0211137711711282 -0.00708713336677233" rpy="0 0 0" />
+      <mass value="0.150306955527936" />
+      <inertia
+        ixx="0.00039934046078429"
+        ixy="-6.26137198523733E-07"
+        ixz="5.31643806851641E-07"
+        iyy="0.000406006690758908"
+        iyz="-5.93032579916887E-08"
+        izz="2.36182089627434E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path}/xtion_camera_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="${path}/xtion_camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="xtion_camera" type="fixed">
+    <origin xyz="-6.43169185368941E-05 0.0087500000000001 0.00679918490215687" rpy="0 0 0" />
+    <parent link="xtion_sensor_Link" />
+    <child link="xtion_camera_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  </xacro:macro>
+</robot>

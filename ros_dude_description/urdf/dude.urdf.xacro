@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<robot name="dude_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find ros_dude_description)/urdf/materials.urdf" />
+  <xacro:include filename="$(find ros_dude_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find ros_dude_description)/urdf/omniwheel.urdf.xacro" />
+  <xacro:include filename="$(find ros_dude_description)/urdf/asus_xtion_pro.urdf.xacro"/>
+  <!-- Included URDF/XACRO Files -->
+
+  <!-- Global properties -->
+  <property name="M_PI" value="3.14159"/>
+  <!-- Global properties -->
+  
+  <!-- Wheels params -->
+  <property name="wheel_radius" value="0.0365"/>
+  <property name="wheel_leght" value="0.01"/>
+  <property name="wheel_offset_x" value="-0.00"/>
+  <property name="wheel_offset_y" value="0.08"/>
+  <property name="wheel_offset_z" value="${wheel_radius}"/>
+  <!-- Wheels params -->
+
+  <!-- Asus Xtion params -->
+<!-- xyz="0.00451431691853688 0 0.116837599999998" rpy="1.5707963267949 0 0" -->
+  <property name="cam_px" value="0.004" />
+  <property name="cam_py" value="0.0" />
+  <property name="cam_pz" value="0.117" />
+  <property name="cam_or" value="${M_PI/2}" />
+  <property name="cam_op" value="0" />
+  <property name="cam_oy" value="0" />
+  <!-- Asus Xtion params -->
+
+  <!-- base_link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/base_link.STL" />
+      </geometry>
+      <material name="Yellow" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/base_link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0857197083472489 4.15321029299353E-06 0.0344447185380985" rpy="0 0 0" />
+      <mass value="0.432580623668397" />
+      <inertia
+        ixx="0.00131485031864629"
+        ixy="-1.43314122310053E-07"
+        ixz="-0.00013883510641213"
+        iyy="0.0021697759965098"
+        iyz="5.7298696577375E-08"
+        izz="0.0028089452261539" />
+    </inertial>
+  </link>
+  <!-- base_link -->
+
+  <!-- Body chassis -->
+  <link name="column_body_Link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/column_body_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/column_body_Link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0907213301786849 -0.00088772159450999 0.0311173420281291" rpy="0 0 0" />
+      <mass value="0.186878289960642" />
+      <inertia
+        ixx="0.000527558823944031"
+        ixy="9.5073271246689E-06"
+        ixz="-2.48756139563941E-05"
+        iyy="0.00132787178905797"
+        iyz="-4.31040060828821E-06"
+        izz="0.00174484068650444" />
+    </inertial>
+  </link>
+  <joint name="column_body" type="fixed">
+    <origin xyz="-0.03105 0 0.0138375999999985" rpy="6.12303176911189E-17 0 0" />
+    <parent link="base_link" />
+    <child link="column_body_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="electronics_Link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/electronics_Link.STL" />
+      </geometry>
+      <material name="Green" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/electronics_Link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.138900427528209 -0.0024010475998454 0.0686403397577923" rpy="0 0 0" />
+      <mass value="0.0598796777354097" />
+      <inertia
+        ixx="7.76258699993621E-05"
+        ixy="1.65741409241155E-05"
+        ixz="6.34984589085961E-06"
+        iyy="0.000128840758819345"
+        iyz="1.77979090945961E-06"
+        izz="0.00020266312793241" />
+    </inertial>
+  </link>
+  <joint name="electronics" type="fixed">
+    <origin xyz="-0.03105 0 0.0138375999999985" rpy="6.12303176911189E-17 0 0" />
+    <parent link="base_link" />
+    <child link="electronics_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wall_body_Link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/wall_body_Link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/wall_body_Link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.121885567097329 8.96585445430196E-05 0.071160775843539" rpy="0 0 0" />
+      <mass value="0.20282613968088" />
+      <inertia
+        ixx="0.000907087574558297"
+        ixy="-9.64733356695E-08"
+        ixz="1.39027570885642E-06"
+        iyy="0.00128070018487064"
+        iyz="1.21595625127852E-07"
+        izz="0.00174365625531033" />
+    </inertial>
+  </link>
+  <joint name="wall_body" type="fixed">
+    <origin xyz="-0.03105 0 0.0138375999999985" rpy="6.12303176911189E-17 0 0" />
+    <parent link="base_link" />
+    <child link="wall_body_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="battery_Link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/battery_Link.STL" />
+      </geometry>
+      <material name="Black" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ros_dude_description/meshes/body/battery_Link.STL" />
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 -0.018 0" rpy="0 0 0" />
+      <mass value="0.24980980400259" />
+      <inertia
+        ixx="0.000444825252242251"
+        ixy="-1.06032793940047E-21"
+        ixz="-9.67661265350208E-21"
+
+        iyy="0.000468434653970205"
+        iyz="0"
+        izz="7.63561548404154E-05" />
+    </inertial>
+  </link>
+  <joint name="battery" type="fixed">
+    <origin xyz="0.08145 0 0.0558375999999985" rpy="1.5707963267949 0 0" />
+    <parent link="base_link" />
+    <child link="battery_Link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <!-- Omniwheel -->  
+  <xacro:omniwheel parent="base_link"/>
+  <!-- Omniwheel -->
+
+  <!-- Asus Xtion Pro Live -->  
+  <xacro:sensor_asus_xtion_pro parent="base_link"/>
+  <!-- Asus Xtion Pro Live --> 
+
+  <!-- Wheels -->
+  <xacro:banebots_wheel position="left">
+    <origin xyz="${wheel_offset_x} ${-wheel_offset_y} ${wheel_offset_z}" rpy="${M_PI/2} 0 0" />
+  </xacro:banebots_wheel>
+  <xacro:banebots_wheel position="Right">
+    <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
+  </xacro:banebots_wheel>
+  <!-- Wheels -->  
+
+</robot>
