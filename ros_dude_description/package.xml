@@ -7,13 +7,13 @@
   </description>
 
   
-  <maintainer email="raffaello.bonghi@minisumo.net">Raffaello Bonghi</maintainer>
+  <maintainer email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</maintainer>
 
   <license>BSD</license>
 
   <url type="repository">https://github.com/rbonghi/ros_dude</url>
 
-  <author email="raffaello.bonghi@minisumo.net">Raffaello Bonghi</author>
+  <author email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>tf</build_depend>
