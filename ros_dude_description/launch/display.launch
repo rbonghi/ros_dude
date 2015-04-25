@@ -33,6 +33,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <param name="use_gui" value="true" />
   </node>
 
-  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find ros_dude_description)/rviz/urdf.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find ros_dude_description)/rviz/urdf.rviz" output="screen" />
 
 </launch>

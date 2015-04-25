@@ -21,7 +21,6 @@
   <!-- Wheels params -->
 
   <!-- Asus Xtion params -->
-<!-- xyz="0.00451431691853688 0 0.116837599999998" rpy="1.5707963267949 0 0" -->
   <property name="cam_px" value="0.004" />
   <property name="cam_py" value="0.0" />
   <property name="cam_pz" value="0.117" />
