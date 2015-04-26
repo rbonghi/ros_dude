@@ -19,5 +19,6 @@
   <run_depend>ros_dude_description</run_depend>
   <build_depend>tf</build_depend>
   <run_depend>tf</run_depend>
+  <run_depend>ros_serial_bridge</run_depend>
 
 </package>

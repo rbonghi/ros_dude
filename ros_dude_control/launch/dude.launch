@@ -1,19 +1,13 @@
 <launch>
-  <param name="/info/robot_name" value="dude" />
 
-  <include file="$(find ros_dude)/launch/include/dude_description.launch" />
+  <!-- Launch description robot -->
+  <include file="$(find ros_dude_description)/launch/include/dude_description.launch" />
   <!--<include file="$(find ros_dude)/launch/include/rgbd.launch" />-->
 
   <!-- LOAD bridge robot -->
-  <group ns="dude">
-      <rosparam command="load" file="$(find ros_dude)/dude_robot.yaml" />      
-
-      <node name="dude" pkg="ros_serial_bridge" type="serial_bridge_node" args="/dev/ttyUSB0" output="screen" respawn="true" respawn_delay="20" >
-          <remap from = "/dude/joint_states" to = "/joint_states" />
-      </node>
-  </group>
-
-  <!--<node name="wandering" pkg="robot_wandering_demo_ros" type="robot_wandering_node" />-->
+  <rosparam command="load" file="$(find ros_dude_description)/dude_robot.yaml" />      
+  <node name="serial_bridge" pkg="ros_serial_bridge" type="serial_bridge_node" 
+        args="/dev/ttyUSB0" output="screen" respawn="true" respawn_delay="20" />
 
   <!-- ROSBRIDGE -->
   <!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
