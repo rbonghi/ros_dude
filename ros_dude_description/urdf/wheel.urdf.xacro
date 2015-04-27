@@ -47,6 +47,17 @@
       <axis xyz="0 0 ${reflect}"/>
     </joint>
 
+		<transmission name="${position}_trans" type="SimpleTransmission">
+			<type>transmission_interface/SimpleTransmission</type>
+			<actuator name="${position}_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+			<joint name="${position}">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+			</joint>
+		</transmission>
+
   </xacro:macro>
 
 </robot>
