@@ -1,334 +1,49 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="dude_wheel">
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="omniwheel">
 
-  <xacro:property name="path_omniwheel" value="package://ros_dude_description/meshes/omniwheel" />
+  <xacro:macro name="omniwheel" params="parent *joint_pose">
 
-  <xacro:macro name="omniwheel" params="parent">
+    <link name="omniwheel_Link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.028591" />
+        <inertia
+          ixx="4.812E-06" ixy="-1.630E-16" ixz="3.9705E-22"
+          iyy="5.447E-06" iyz="5.7548E-17"
+          izz="4.8098E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${path_meshes}/omniwheel/omniwheel_Link.STL" />
+        </geometry>
+        <material name="DarkGrey" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <sphere radius="0.021"/>
+        </geometry>
+      </collision>
+    </link>
 
-  <link name="omniwheel_Link">
-    <inertial>
-      <origin xyz="-2.98078228766485E-12 -0.0159999999998262 1.04373801268487E-12" rpy="0 0 0" />
-      <mass value="0.0164743786019311" />
-      <inertia
-        ixx="2.5182162984259E-06"
-        ixy="-1.6301814784866E-16"
-        ixz="-2.08449514363363E-21"
-        iyy="2.61137234386137E-06"
-        iyz="5.75450229214032E-17"
-        izz="2.51596416456903E-06" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/omniwheel_Link.STL" />
-      </geometry>
-      <material name="DarkGrey" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="omniwheel" type="continuous">
-    <origin xyz="0.20895 0.016 0.0218375999999985" rpy="0 0 0" />
-    <parent link="${parent}" />
-    <child link="omniwheel_Link" />
-    <axis xyz="0 -1 0" />
-  </joint>
-  <gazebo reference="omniwheel">
-    <material>Gazebo/DarkGrey</material>
-  </gazebo>
+    <gazebo reference="omniwheel_link">
+      <mu1 value="1.0"/>
+      <mu2 value="1.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+      <maxContacts>1</maxContacts>
+      <material>Gazebo/Black</material>
+    </gazebo>
 
-
-  <link name="wheel1_omniwheel_Link">
-    <inertial>
-      <origin xyz="-0.0109250000000001 1.66533453693773E-16 1.73472347597681E-18" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593801E-08"
-        ixy="-2.14239778651234E-22"
-        ixz="-6.91875383716808E-25"
-        iyy="3.99451464831259E-08"
-        iyz="2.80707627581717E-26"
-        izz="3.99451464831259E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel1_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel1_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel1_omniwheel" type="continuous">
-    <origin xyz="0.015604857543621 -0.008 0.00910825803258154" rpy="1.5707963267949 0.394916918533723 -9.26825791289139E-17" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel1_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel1_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel2_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732232 -1.94289029309402E-16 0" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593798E-08"
-        ixy="2.36573655190166E-22"
-        ixz="1.81385736627921E-25"
-        iyy="3.99451464831245E-08"
-        iyz="3.52788837746716E-26"
-        izz="3.99451464831245E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel2_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel2_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel2_omniwheel" type="continuous">
-    <origin xyz="0.0174950161828645 -0.008 0.00451623206955716" rpy="1.5707963267949 1.17587940826117 3.14159265358979" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel2_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel2_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel3_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732232 -1.66533453693773E-16 0" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593813E-08"
-        ixy="2.27474668452083E-22"
-        ixz="-1.46188663777651E-24"
-        iyy="3.9945146483125E-08"
-        iyz="-2.36488835798662E-26"
-        izz="3.9945146483125E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel3_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel3_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel3_omniwheel" type="continuous">
-    <origin xyz="0.00451623206955709 -0.008 -0.0174950161828646" rpy="1.5707963267949 -0.39491691853373 3.14159265358979" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel3_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel3_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel4_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732231 1.38777878078145E-16 0" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593761E-08"
-        ixy="-2.01004888850386E-22"
-        ixz="-4.33511020203432E-25"
-        iyy="3.99451464831227E-08"
-        iyz="-1.26291076632911E-27"
-        izz="3.99451464831227E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel4_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel4_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel4_omniwheel" type="continuous">
-    <origin xyz="-0.0174950161828646 -0.008 -0.00451623206955703" rpy="1.5707963267949 -1.17587940826116 -3.37828843903879E-17" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel4_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel4_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel5_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732234 8.32667268468867E-17 0" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593813E-08"
-        ixy="1.24077091882954E-22"
-        ixz="-5.4144158476139E-25"
-        iyy="3.99451464831257E-08"
-        iyz="1.14426806846713E-25"
-        izz="3.99451464831257E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel5_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel5_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel5_omniwheel" type="continuous">
-    <origin xyz="0.0091773862580764 -0.024 0.0155643029016678" rpy="1.5707963267949 1.18031508193121 -1.34779352725226E-16" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel5_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel5_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel6_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732234 -2.77555756156289E-17 -1.73472347597681E-18" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593799E-08"
-        ixy="-1.24077091882954E-22"
-        ixz="-1.68544304494927E-24"
-        iyy="3.99451464831246E-08"
-        iyz="-7.27783536444543E-26"
-        izz="3.99451464831246E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel6_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel6_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel6_omniwheel" type="continuous">
-    <origin xyz="0.0155643029016678 -0.024 -0.00917738625807647" rpy="1.5707963267949 0.390481244863686 3.14159265358979" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel6_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel6_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel7_omniwheel_Link">
-    <inertial>
-      <origin xyz="0.0108739898732234 5.55111512312578E-17 0" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.51251046593786E-08"
-        ixy="-1.63781761285499E-22"
-        ixz="-1.46758763574446E-24"
-        iyy="3.99451464831247E-08"
-        iyz="-1.12577022334281E-25"
-        izz="3.99451464831247E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel7_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel7_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel7_omniwheel" type="continuous">
-    <origin xyz="-0.00917738625807635 -0.024 -0.0155643029016679" rpy="1.5707963267949 -1.1803150819312 3.14159265358979" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel7_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel7_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <link name="wheel8_omniwheel_Link">
-    <inertial>
-      <origin xyz="-0.010925 1.38777878078145E-16 1.73472347597681E-18" rpy="0 0 0" />
-      <mass value="0.00151452717448798" />
-      <inertia
-        ixx="2.5125104659377E-08"
-        ixy="-5.9557004103818E-23"
-        ixz="-7.39970794498117E-25"
-        iyy="3.99451464831238E-08"
-        iyz="-2.19396873665366E-26"
-        izz="3.99451464831238E-08" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel8_omniwheel_Link.STL" />
-      </geometry>
-      <material name="Black" />
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <geometry>
-        <mesh filename="${path_omniwheel}/wheel8_omniwheel_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint name="wheel8_omniwheel" type="continuous">
-    <origin xyz="0.00459378956890963 -0.024 0.0174748116081796" rpy="1.5707963267949 -0.390481244863705 -7.53548068257853E-17" />
-    <parent link="omniwheel_Link" />
-    <child link="wheel8_omniwheel_Link" />
-    <axis xyz="-1 0 0" />
-  </joint>
-  <gazebo reference="wheel8_omniwheel">
-    <material>Gazebo/Black</material>
-  </gazebo>
+    <joint name="omniwheel" type="continuous">
+      <xacro:insert_block name="joint_pose"/>
+      <parent link="${parent}" />
+      <child link="omniwheel_Link" />
+      <axis xyz="0 -1 0" />
+      <mimic joint="left" multiplier="1" offset="0"/>
+    </joint>
 
   </xacro:macro>
 

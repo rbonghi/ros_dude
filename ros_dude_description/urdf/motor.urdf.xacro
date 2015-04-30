@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="motor">
+
+  <xacro:macro name="motor" params="position parent *joint_pose">
+
+    <link name="${position}_motor_Link">
+      <inertial>
+        <origin xyz="0 -0.042023 0.0067859" rpy="0 0 0" />
+        <mass value="0.040904" />
+        <inertia
+          ixx="9.9195E-06" ixy="-1.0926E-08" ixz="-1.0787E-10"
+          iyy="6.1085E-06" iyz="-1.7841E-07"
+          izz="9.8601E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${path_meshes}/motor/motor_Link.STL" />
+        </geometry>
+        <material name="GunMetalGrey" />
+      </visual>
+    </link>
+    <joint name="${position}_motor" type="fixed">
+      <xacro:insert_block name="joint_pose"/>
+      <parent link="${parent}" />
+      <child link="${position}_motor_Link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+  </xacro:macro>
+
+</robot>

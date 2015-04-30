@@ -8,7 +8,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
           <geometry>
-            <mesh filename="package://ros_dude_description/meshes/wheel/wheel_link.STL" />
+            <mesh filename="${path_meshes}/wheel/wheel_link.STL" />
           </geometry>
           <material name="Blue" />
       </visual>
@@ -19,7 +19,7 @@
         </geometry>
       </collision>
       <inertial>
-        <origin xyz="-6.93889390390723E-18 6.54344632364662E-05 6.93889390390723E-18" rpy="${M_PI/2} 0 0" />
+        <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
         <mass value="0.0372140206710188" />
         <inertia
           ixx="1.12116949143941E-05" ixy="0" ixz="0"
@@ -47,16 +47,16 @@
       <axis xyz="0 0 ${reflect}"/>
     </joint>
 
-		<transmission name="${position}_trans" type="SimpleTransmission">
-			<type>transmission_interface/SimpleTransmission</type>
-			<actuator name="${position}_motor">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
-				<mechanicalReduction>1</mechanicalReduction>
-			</actuator>
-			<joint name="${position}">
-				<hardwareInterface>EffortJointInterface</hardwareInterface>
-			</joint>
-		</transmission>
+    <transmission name="${position}_trans" type="SimpleTransmission">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${position}_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <joint name="${position}">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+    </transmission>
 
   </xacro:macro>
 
