@@ -42,7 +42,7 @@
       <parent link="${parent}" />
       <child link="omniwheel_Link" />
       <axis xyz="0 -1 0" />
-      <mimic joint="left" multiplier="1" offset="0"/>
+      <mimic joint="Left" multiplier="1" offset="0"/>
     </joint>
 
   </xacro:macro>

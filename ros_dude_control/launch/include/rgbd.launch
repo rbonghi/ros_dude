@@ -3,7 +3,7 @@
   <!-- "camera" should uniquely identify the device. All topics are pushed down
        into the "camera" namespace, and it is prepended to tf frame ids. -->
   <arg name="camera"      default="rgbd_camera"/>
-  <arg name="publish_tf"  default="false"/>
+  <arg name="publish_tf"  default="true"/>
  
   <!-- Factory-calibrated depth registration -->
   <arg name="depth_registration"              default="true"/>

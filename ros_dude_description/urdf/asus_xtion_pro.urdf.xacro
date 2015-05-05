@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 <robot name="sensor_asus_xtion_pro" xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <!-- Xacro properties -->
+  <xacro:property name="asus_xtion_pro_depth_rel_rgb_py" value="0.0270" />
+  <xacro:property name="asus_xtion_pro_cam_rel_rgb_py"   value="-0.0220" />
+
   <!-- Parameterised in part by the values in turtlebot_properties.urdf.xacro -->
   <xacro:macro name="sensor_asus_xtion_pro" params="parent type *joint_pose">
 
-  <link name="xtion_sensor_Link">
+  <link name="xtion_sensor_link">
     <inertial>
       <origin xyz="0.00025226 0 0.0028141" rpy="0 0 0" />
       <mass value="0.015722" />
@@ -16,7 +20,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="${path_meshes}/xtion/xtion_sensor_Link.STL" />
+        <mesh filename="${path_meshes}/xtion/xtion_sensor_link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
@@ -30,11 +34,11 @@
   <joint name="xtion_sensor" type="fixed">
     <xacro:insert_block name="joint_pose"/>
     <parent link="${parent}" />
-    <child link="xtion_sensor_Link" />
+    <child link="xtion_sensor_link" />
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="xtion_camera_Link">
+  <link name="camera_link">
     <inertial>
       <origin xyz="-0.00077984 -0.00028713 0.021283" rpy="0 0 0" />
       <mass value="0.15031" />
@@ -46,7 +50,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="${path_meshes}/xtion/xtion_camera_Link.STL" />
+        <mesh filename="${path_meshes}/xtion/xtion_camera_link.STL" />
       </geometry>
       <material name="Black" />
     </visual>
@@ -57,26 +61,92 @@
       </geometry>
     </collision>
   </link>
-    <gazebo reference="xtion_camera_Link">
+    <gazebo reference="camera_link">
       <mu1 value="1.0"/>
       <mu2 value="1.0"/>
       <kp value="10000000.0" />
       <kd value="1.0" />
       <fdir1 value="1 0 0"/>
     </gazebo>
+
   <joint name="xtion_camera" type="${type}">
     <origin xyz="0.00026411 0 0.01275" rpy="0 0 0" />
-    <parent link="xtion_sensor_Link" />
-    <child link="xtion_camera_Link" />
+    <parent link="xtion_sensor_link" />
+    <child link="camera_link" />
     <limit effort="1000.0" lower="-0.68" upper="0.68" velocity="0.5"/>
     <axis xyz="0 -1 0" />
   </joint>
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="0 0.018 0.022" rpy="0 0 0" />
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame" />
+  </joint>
+  <link name="camera_rgb_frame"/>
+
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+    <parent link="camera_rgb_frame" />
+    <child link="camera_rgb_optical_frame" />
+  </joint>
+  <link name="camera_rgb_optical_frame"/>
+
+  <joint name="camera_depth_joint" type="fixed">
+    <origin xyz="0 ${asus_xtion_pro_depth_rel_rgb_py} 0" rpy="0 0 0" />
+    <parent link="camera_rgb_frame" />
+    <child link="camera_depth_frame" />
+  </joint>
+  <link name="camera_depth_frame"/>
+
+  <joint name="camera_depth_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
+    <parent link="camera_depth_frame" />
+    <child link="camera_depth_optical_frame" />
+  </joint>
+  <link name="camera_depth_optical_frame"/>
+
+  <gazebo reference="camera_rgb_frame">
+    <sensor type="depth" name="camera">
+      <always_on>true</always_on>
+      <update_rate>20.0</update_rate>
+      <camera>
+        <horizontal_fov>${58.0*M_PI/180.0}</horizontal_fov>
+        <image>
+          <format>R8G8B8</format>
+          <width>640</width>
+          <height>480</height>
+        </image>
+        <clip>
+          <near>0.08</near>
+          <far>3.0</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <cameraName>camera</cameraName>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>10</updateRate>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <frameName>camera_rgb_optical_frame</frameName>
+        <baseline>0.1</baseline>
+        <distortion_k1>0.0</distortion_k1>
+        <distortion_k2>0.0</distortion_k2>
+        <distortion_k3>0.0</distortion_k3>
+        <distortion_t1>0.0</distortion_t1>
+        <distortion_t2>0.0</distortion_t2>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+      </plugin>
+    </sensor>
+  </gazebo>
 
   <gazebo reference="xtion_sensor">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="xtion_camera">
+  <gazebo reference="camera">
     <material>Gazebo/Black</material>
   </gazebo>
 

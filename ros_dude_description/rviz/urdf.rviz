@@ -6,6 +6,9 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1/Frames1
+        - /TF1/Tree1
+        - /TF1/Tree1/base_link1
       Splitter Ratio: 0.5
     Tree Height: 565
   - Class: rviz/Selection
@@ -58,11 +61,6 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        Right_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         base_link:
           Alpha: 1
           Show Axes: false
@@ -73,12 +71,38 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         column_body_Link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         electronics_Link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        jetson_board_Link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_motor_Link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -93,47 +117,17 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        right_motor_Link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         wall_body_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel1_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel2_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel3_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel4_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel5_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel6_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel7_omniwheel_Link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        wheel8_omniwheel_Link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -155,19 +149,79 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        base_link:
+          Value: true
+        battery_Link:
+          Value: false
+        camera_depth_frame:
+          Value: true
+        camera_depth_optical_frame:
+          Value: true
+        camera_rgb_frame:
+          Value: true
+        camera_rgb_optical_frame:
+          Value: true
+        column_body_Link:
+          Value: false
+        electronics_Link:
+          Value: false
+        jetson_board_Link:
+          Value: false
+        left_motor_Link:
+          Value: false
+        left_wheel_link:
+          Value: true
+        omniwheel_Link:
+          Value: true
+        right_motor_Link:
+          Value: false
+        right_wheel_link:
+          Value: true
+        wall_body_Link:
+          Value: false
+        xtion_camera_Link:
+          Value: true
+        xtion_sensor_Link:
+          Value: true
       Marker Scale: 0.4
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        {}
+        base_link:
+          battery_Link:
+            {}
+          column_body_Link:
+            left_motor_Link:
+              {}
+            right_motor_Link:
+              {}
+          electronics_Link:
+            jetson_board_Link:
+              {}
+          left_wheel_link:
+            {}
+          omniwheel_Link:
+            {}
+          right_wheel_link:
+            {}
+          wall_body_Link:
+            {}
+          xtion_sensor_Link:
+            xtion_camera_Link:
+              camera_rgb_frame:
+                camera_depth_frame:
+                  camera_depth_optical_frame:
+                    {}
+                camera_rgb_optical_frame:
+                  {}
       Update Interval: 0
-      Value: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
