@@ -38,7 +38,7 @@
     <axis xyz="0 0 0" />
   </joint>
 
-  <link name="camera_link">
+  <link name="rgbd_camera_link">
     <inertial>
       <origin xyz="-0.00077984 -0.00028713 0.021283" rpy="0 0 0" />
       <mass value="0.15031" />
@@ -61,7 +61,7 @@
       </geometry>
     </collision>
   </link>
-    <gazebo reference="camera_link">
+    <gazebo reference="rgbd_camera_link">
       <mu1 value="1.0"/>
       <mu2 value="1.0"/>
       <kp value="10000000.0" />
@@ -72,41 +72,41 @@
   <joint name="xtion_camera" type="${type}">
     <origin xyz="0.00026411 0 0.01275" rpy="0 0 0" />
     <parent link="xtion_sensor_link" />
-    <child link="camera_link" />
+    <child link="rgbd_camera_link" />
     <limit effort="1000.0" lower="-0.68" upper="0.68" velocity="0.5"/>
     <axis xyz="0 -1 0" />
   </joint>
 
-  <joint name="camera_rgb_joint" type="fixed">
+  <joint name="rgbd_camera_rgb_joint" type="fixed">
     <origin xyz="0 0.018 0.022" rpy="0 0 0" />
-    <parent link="camera_link"/>
-    <child link="camera_rgb_frame" />
+    <parent link="rgbd_camera_link"/>
+    <child link="rgbd_camera_rgb_frame" />
   </joint>
-  <link name="camera_rgb_frame"/>
+  <link name="rgbd_camera_rgb_frame"/>
 
   <joint name="camera_rgb_optical_joint" type="fixed">
     <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
-    <parent link="camera_rgb_frame" />
-    <child link="camera_rgb_optical_frame" />
+    <parent link="rgbd_camera_rgb_frame" />
+    <child link="rgbd_camera_rgb_optical_frame" />
   </joint>
-  <link name="camera_rgb_optical_frame"/>
+  <link name="rgbd_camera_rgb_optical_frame"/>
 
-  <joint name="camera_depth_joint" type="fixed">
+  <joint name="rgbd_camera_depth_joint" type="fixed">
     <origin xyz="0 ${asus_xtion_pro_depth_rel_rgb_py} 0" rpy="0 0 0" />
-    <parent link="camera_rgb_frame" />
-    <child link="camera_depth_frame" />
+    <parent link="rgbd_camera_rgb_frame" />
+    <child link="rgbd_camera_depth_frame" />
   </joint>
-  <link name="camera_depth_frame"/>
+  <link name="rgbd_camera_depth_frame"/>
 
-  <joint name="camera_depth_optical_joint" type="fixed">
+  <joint name="rgbd_camera_depth_optical_joint" type="fixed">
     <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}" />
-    <parent link="camera_depth_frame" />
-    <child link="camera_depth_optical_frame" />
+    <parent link="rgbd_camera_depth_frame" />
+    <child link="rgbd_camera_depth_optical_frame" />
   </joint>
-  <link name="camera_depth_optical_frame"/>
+  <link name="rgbd_camera_depth_optical_frame"/>
 
-  <gazebo reference="camera_rgb_frame">
-    <sensor type="depth" name="camera">
+  <gazebo reference="rgbd_camera_rgb_frame">
+    <sensor type="depth" name="rgbd_camera">
       <always_on>true</always_on>
       <update_rate>20.0</update_rate>
       <camera>
@@ -122,7 +122,7 @@
         </clip>
       </camera>
       <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
-        <cameraName>camera</cameraName>
+        <cameraName>rgbd_camera</cameraName>
         <alwaysOn>true</alwaysOn>
         <updateRate>10</updateRate>
         <imageTopicName>rgb/image_raw</imageTopicName>
@@ -130,7 +130,7 @@
         <pointCloudTopicName>depth/points</pointCloudTopicName>
         <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
         <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
-        <frameName>camera_rgb_optical_frame</frameName>
+        <frameName>rgbd_camera_rgb_optical_frame</frameName>
         <baseline>0.1</baseline>
         <distortion_k1>0.0</distortion_k1>
         <distortion_k2>0.0</distortion_k2>
@@ -140,13 +140,10 @@
         <pointCloudCutoff>0.4</pointCloudCutoff>
       </plugin>
     </sensor>
-  </gazebo>
-
-  <gazebo reference="xtion_sensor">
     <material>Gazebo/Black</material>
   </gazebo>
 
-  <gazebo reference="camera">
+  <gazebo reference="xtion_sensor">
     <material>Gazebo/Black</material>
   </gazebo>
 
