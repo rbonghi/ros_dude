@@ -27,12 +27,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="model" />
 
   <!-- Standalone launcher to visualize the robot model. -->
-  <include file="$(find ros_dude_description)/launch/description.launch"/>
+  <include file="$(find dude_description)/launch/description.launch"/>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen">
     <param name="use_gui" value="true" />
   </node>
 
-  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find ros_dude_description)/rviz/urdf.rviz" output="screen" />
+  <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find dude_description)/rviz/urdf.rviz" output="screen" />
 
 </launch>

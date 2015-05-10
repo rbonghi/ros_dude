@@ -2,15 +2,15 @@
 <robot name="dude_robot" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find ros_dude_description)/urdf/materials.urdf" />
-  <xacro:include filename="$(find ros_dude_description)/urdf/motor.urdf.xacro" />
-  <xacro:include filename="$(find ros_dude_description)/urdf/omniwheel.urdf.xacro" />
-  <xacro:include filename="$(find ros_dude_description)/urdf/wheel.urdf.xacro" />
-  <xacro:include filename="$(find ros_dude_description)/urdf/asus_xtion_pro.urdf.xacro"/>
+  <xacro:include filename="$(find dude_description)/urdf/materials.urdf" />
+  <xacro:include filename="$(find dude_description)/urdf/motor.urdf.xacro" />
+  <xacro:include filename="$(find dude_description)/urdf/omniwheel.urdf.xacro" />
+  <xacro:include filename="$(find dude_description)/urdf/wheel.urdf.xacro" />
+  <xacro:include filename="$(find dude_description)/urdf/asus_xtion_pro.urdf.xacro"/>
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
-  <property name="path_meshes" value="package://ros_dude_description/meshes"/>
+  <property name="path_meshes" value="package://dude_description/meshes"/>
   <property name="M_PI" value="3.14159"/>
   <!-- Global properties -->
   

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
-  <name>ros_dude_navigation</name>
-  <version>0.0.1</version>
+  <name>dude_navigation</name>
+  <version>0.1.0</version>
   <description>Autonomous mapping and navigation demos for robot 4UDE</description>
 
   <author email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</author>
