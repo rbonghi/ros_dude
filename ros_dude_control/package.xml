@@ -1,24 +1,28 @@
 <?xml version="1.0"?>
 <package>
   <name>ros_dude_control</name>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
   <description>
 	This is the configuration package for the robot 4UDE.
   </description>
 
   
-  <maintainer email="raffaello.bonghi@minisumo.net">Raffaello Bonghi</maintainer>
+  <maintainer email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</maintainer>
 
   <license>BSD</license>
 
   <url type="repository">https://github.com/rbonghi/ros_dude</url>
 
-  <author email="raffaello.bonghi@minisumo.net">Raffaello Bonghi</author>
+  <author email="raffaello.bonghi@officinerobotiche.it">Raffaello Bonghi</author>
 
   <buildtool_depend>catkin</buildtool_depend>
-  <run_depend>ros_dude_description</run_depend>
+
   <build_depend>tf</build_depend>
+
   <run_depend>tf</run_depend>
-  <run_depend>ros_serial_bridge</run_depend>
+  <run_depend>twist_mux</run_depend>
+
+  <run_depend>ros_dude_description</run_depend>
+  <run_depend>orbus_interface</run_depend>
 
 </package>
