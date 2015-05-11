@@ -41,18 +41,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         </rosparam>-->
     </node>
 
-    <!-- Differential controller parameters -->
-    <rosparam command="load" file="$(find dude_control)/config/control.yaml" />
-
-    <!-- Launch and running al controller -->
-    <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
-            args="unav_joint_publisher unav_velocity_controller --shutdown-timeout 3"/>
-
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-      <rosparam command="load" file="$(find dude_control)/config/twist_mux.yaml" />
-      <remap from="cmd_vel_out" to="unav_velocity_controller/cmd_vel"/>
-    </node>
-
     <!-- Diagnostic Aggregator -->
     <!--<node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
         <rosparam command="load" file="$(find husky_base)/config/diagnostics.yaml"/>

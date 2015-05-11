@@ -41,7 +41,7 @@
     <joint name="${position}" type="continuous">      
       <parent link="base_link"/>
       <child link="${position}_wheel_link"/>
-      <limit effort="100" velocity="12"/>
+      <limit effort="12" velocity="12"/>
       <joint_properties damping="0.0" friction="0.0"/>
       <xacro:insert_block name="joint_pose"/>
       <axis xyz="0 0 ${reflect}"/>
