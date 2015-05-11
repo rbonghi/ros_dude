@@ -32,6 +32,8 @@
   <property name="cam_oy" value="0" />
   <!-- Asus Xtion params -->
 
+  <xacro:macro name="dude_robot">
+
   <!-- base_link -->
   <link name="base_link">
     <inertial>
@@ -216,6 +218,8 @@
   <xacro:banebots_wheel position="Right" reflect="1">
     <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:banebots_wheel>
-  <!-- Wheels -->  
+  <!-- Wheels -->
+
+  </xacro:macro>
 
 </robot>
