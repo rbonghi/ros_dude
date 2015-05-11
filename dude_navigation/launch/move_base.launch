@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="no_static_map" default="true"/>
+  <arg name="no_static_map" default="false"/>
 
   <arg name="base_global_planner" default="navfn/NavfnROS"/>
   <!--<arg name="base_global_planner" default="discrete_controller/MultiRatePlanner"/>-->
