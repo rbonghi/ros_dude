@@ -34,19 +34,19 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
       maxUrange: 2.5 # Should be just less than sensor range
       maxRange: 3.1 # Should be just greater than sensor range
-      particles: 100 # Increased from 80
+      particles: 300 # Increased from 80
 
       # Update frequencies
-      linearUpdate: 0.3
-      angularUpdate: 0.5
-      temporalUpdate: 2.0
+      linearUpdate: 0.25
+      angularUpdate: 0.262
+      temporalUpdate: -1.0
       resampleThreshold: 0.5
 
       # Initial Map Size
-      xmin: -100.0
-      ymin: -100.0
-      xmax: 100.0
-      ymax: 100.0
+      xmin: -10.0
+      ymin: -10.0
+      xmax: 10.0
+      ymax: 10.0
       delta: 0.05
 
       # All default
@@ -66,35 +66,4 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     </rosparam>
     <remap from="scan" to="$(arg scan_topic)"/>
   </node>
-
-    <!--<node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
-        <param name="map_update_interval" value="2.0"/>
-        <param name="maxUrange" value="6.0"/>
-        <param name="sigma" value="0.05"/>
-        <param name="kernelSize" value="1"/>
-        <param name="lstep" value="0.05"/>
-        <param name="astep" value="0.05"/>
-        <param name="iterations" value="5"/>
-        <param name="lsigma" value="0.075"/>
-        <param name="ogain" value="3.0"/>
-        <param name="lskip" value="0"/>
-        <param name="srr" value="0.01"/>
-        <param name="srt" value="0.02"/>
-        <param name="str" value="0.01"/>
-        <param name="stt" value="0.02"/>
-        <param name="linearUpdate" value="0.25"/>
-        <param name="angularUpdate" value="0.262"/>
-        <param name="temporalUpdate" value="-1.0"/>
-        <param name="resampleThreshold" value="0.5"/>
-        <param name="particles" value="300"/>
-        <param name="xmin" value="-50.0"/>
-        <param name="ymin" value="-50.0"/>
-        <param name="xmax" value="50.0"/>
-        <param name="ymax" value="50.0"/>
-        <param name="delta" value="0.05"/>
-        <param name="llsamplerange" value="0.01"/>
-        <param name="llsamplestep" value="0.01"/>
-        <param name="lasamplerange" value="0.005"/>
-        <param name="lasamplestep" value="0.005"/>
-    </node>-->
 </launch>
