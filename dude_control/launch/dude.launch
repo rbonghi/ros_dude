@@ -7,10 +7,13 @@
   <include file="$(find dude_control)/launch/control.launch" />
   
   <!-- load RDBG camera and laser scan -->
-  <!--<include file="$(find dude_control)/launch/include/rgbd.launch" />-->
+  <include file="$(find dude_control)/launch/include/rgbd.launch" />
 
   <!-- Load teleoperation telecontrol -->
-  <include file="$(find dude_control)/launch/teleop.launch" />
+  <!--<include file="$(find dude_control)/launch/teleop.launch" />-->
+
+  <!-- Gmapping -->
+  <!--<include file="$(find dude_navigation)/launch/gmapping.launch" />-->
 
   <!-- ROSBRIDGE -->
   <!--<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
