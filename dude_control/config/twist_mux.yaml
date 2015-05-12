@@ -4,7 +4,7 @@ topics:
   timeout : 0.5
   priority: 10
 - name    : key_board
-  topic   : /key_vel
+  topic   : key_vel
   timeout : 0.5
   priority: 8
 - name    : interactive_marker
