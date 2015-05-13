@@ -40,7 +40,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <!-- Load teleoperation telecontrol -->
-  <include file="$(find dude_control)/launch/teleop.launch" />
+  <include file="$(find dude_control)/launch/teleop.launch">
+    <arg name="joystick" default="false" />
+  </include>
 
   <!-- Launch web interface -->
   <group if="$(arg web_enabled)">
