@@ -27,6 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <arg name="rgbd_enabled" default="false"/>
   <arg name="web_enabled" default="false"/>
+  <arg name="joystick_enabled" default="false"/>
 
   <!-- Load unav hardware interface -->
   <include file="$(find dude_control)/launch/include/driver.launch" />
@@ -40,9 +41,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <!-- Load teleoperation telecontrol -->
+  <group if="$(arg joystick_enabled)">
   <include file="$(find dude_control)/launch/teleop.launch">
-    <arg name="joystick" default="false" />
+    <arg name="joystick" default="true" />
   </include>
+  </group>
 
   <!-- Launch web interface -->
   <group if="$(arg web_enabled)">
