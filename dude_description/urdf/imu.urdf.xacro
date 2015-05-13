@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="imu">
+
+  <xacro:macro name="imu" params="name parent *joint_pose">
+
+    <link name="${name}_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.028 0.041 0.005" />
+        </geometry>
+        <material name="Red" />
+      </visual>
+    </link>
+    <joint name="${name}_joint" type="fixed">
+      <xacro:insert_block name="joint_pose"/>
+      <parent link="${parent}" />
+      <child link="${name}_link" />
+    </joint>
+    <gazebo reference="${name}_link">
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

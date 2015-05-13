@@ -7,6 +7,7 @@
   <xacro:include filename="$(find dude_description)/urdf/omniwheel.urdf.xacro" />
   <xacro:include filename="$(find dude_description)/urdf/wheel.urdf.xacro" />
   <xacro:include filename="$(find dude_description)/urdf/asus_xtion_pro.urdf.xacro"/>
+  <xacro:include filename="$(find dude_description)/urdf/imu.urdf.xacro"/>
   <!-- Included URDF/XACRO Files -->
 
   <!-- Global properties -->
@@ -189,6 +190,12 @@
     <child link="jetson_board_Link" />
     <axis xyz="0 0 0" />
   </joint>
+
+  <!-- IMU -->
+  <xacro:imu name="imu" parent="base_link">
+    <origin xyz="-0.06 0 0.11" rpy="0 0 0" />
+  </xacro:imu>
+  <!-- IMU -->
 
   <!-- Motors -->
   <xacro:motor position="left" parent="column_body_Link">
