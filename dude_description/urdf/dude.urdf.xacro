@@ -48,7 +48,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="${path_meshes}/body/base_link.STL" />
+        <mesh filename="${path_meshes}/body/base_link.dae" />
       </geometry>
       <material name="Yellow" />
     </visual>
