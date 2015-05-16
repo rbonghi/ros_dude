@@ -24,22 +24,8 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
-
-    <!-- Differential controller parameters -->
-    <rosparam command="load" file="$(find dude_control)/config/control.yaml" />
-
-    <!-- Launch and running al controller -->
-    <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
-            args="unav_joint_publisher unav_velocity_controller --shutdown-timeout 3"/>
-
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
-    <rosparam command="load" file="$(find dude_control)/config/localization.yaml" />
+  <node pkg="razor_imu_9dof" type="imu_node.py" name="imu_node" output="screen">
+    <rosparam file="$(find dude_control)/config/razor.yaml" command="load"/>
+    <remap from="imu" to="imu/data"/>
   </node>
-
-    <!-- Mux to control via joy, keyboard, high level control the robot -->
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-      <rosparam command="load" file="$(find dude_control)/config/twist_mux.yaml" />
-      <remap from="cmd_vel_out" to="unav_velocity_controller/cmd_vel"/>
-    </node>
-
 </launch>

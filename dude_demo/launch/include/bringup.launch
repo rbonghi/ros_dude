@@ -31,14 +31,14 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Load unav hardware interface -->
   <include file="$(find dude_control)/launch/include/driver.launch" />
-
-  <!-- Load controller and twix-mux -->
-  <include file="$(find dude_control)/launch/control.launch" />
   
   <!-- load RDBG camera and laser scan -->
   <group if="$(arg rgbd_enabled)">
     <include file="$(find dude_control)/launch/include/rgbd.launch" />
   </group>
+
+  <!-- Launch IMU sensor -->
+  <include file="$(find dude_control)/launch/include/imu.launch" />
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick_enabled)">
@@ -63,5 +63,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- <node name="nodelet" pkg="nodelet" type="standalone" depth_image_proc/convert_metric image_raw:=/camera/depth_registered/image_raw image:=/camera/depth_registered/image_float /> -->
 
   </group>
+
+  <!-- Load controller and twix-mux -->
+  <include file="$(find dude_control)/launch/control.launch" />
  
 </launch>

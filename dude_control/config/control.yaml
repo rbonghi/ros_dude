@@ -15,9 +15,11 @@ unav_velocity_controller:
   # Base frame_id
   base_frame_id: base_link
 
-  enable_odom_tf: true
+  # Odometry fused with IMU is published by robot_localization, so
+  # no need to publish a TF based on encoders alone.
+  enable_odom_tf: false
 
-  # Husky hardware provides wheel velocities
+  # 4UDE hardware provides wheel velocities
   estimate_velocity_from_position: false
 
   # Wheel separation and radius multipliers
@@ -29,9 +31,9 @@ unav_velocity_controller:
   linear:
     x:
       has_velocity_limits:     true
-      max_velocity:            1.0   # m/s
+      max_velocity:            0.6   # m/s
       has_acceleration_limits: true
-      max_acceleration:        3.0   # m/s^2
+      max_acceleration:        2.0   # m/s^2
   angular:
     z:
       has_velocity_limits:     true
