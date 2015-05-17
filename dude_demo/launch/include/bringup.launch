@@ -56,12 +56,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
        <arg name="port" value="9090"/>
     </include>
 
-      <!--<node name="web_video_server" pkg="web_video_server" type="web_video_server" port="9999" />-->
-
-      <!--<node name="web_video_server" pkg="depthcloud_encoder" type="depthcloud_encoder_node" depth="/camera/depth_registered/image_float" rgb="/camera/rgb/image_rect_color" /> -->
-
-      <!-- <node name="nodelet" pkg="nodelet" type="standalone" depth_image_proc/convert_metric image_raw:=/camera/depth_registered/image_raw image:=/camera/depth_registered/image_float /> -->
-
+    <!--<node name="web_video_server" pkg="web_video_server" type="web_video_server" port="9999" />
+    <node name="web_video_server" pkg="depthcloud_encoder" type="depthcloud_encoder_node" 
+          depth="/camera/depth_registered/image_float" rgb="/camera/rgb/image_rect_color" />-->
+    <!--<node name="nodelet" pkg="nodelet" type="standalone" 
+          depth_image_proc/convert_metric image_raw:=/camera/depth_registered/image_raw
+          image:=/camera/depth_registered/image_float /> -->
   </group>
 
   <!-- Load controller and twix-mux -->

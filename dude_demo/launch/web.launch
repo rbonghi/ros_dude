@@ -25,8 +25,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
+  <arg name="rgbd_enabled" default="true"/>
+
   <include file="$(find dude_demo)/launch/include/bringup.launch">
     <arg name="web_enabled" value="true"/>
+    <arg name="rgbd_enabled" value="$(arg rgbd_enabled)"/>
   </include>
 
 </launch>

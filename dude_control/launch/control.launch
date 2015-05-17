@@ -32,9 +32,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <node name="base_controller_spawner" pkg="controller_manager" type="spawner" 
             args="unav_joint_publisher unav_velocity_controller --shutdown-timeout 3"/>
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
-    <rosparam command="load" file="$(find dude_control)/config/localization.yaml" />
-  </node>
+    <!-- Launch EKF localization -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+      <rosparam command="load" file="$(find dude_control)/config/localization.yaml" />
+    </node>
 
     <!-- Mux to control via joy, keyboard, high level control the robot -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
