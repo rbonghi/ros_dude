@@ -25,11 +25,24 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="rgbd_enabled" default="true"/>
-
-  <include file="$(find dude_demo)/launch/include/bringup.launch">
-    <arg name="web_enabled" value="true"/>
-    <arg name="rgbd_enabled" value="$(arg rgbd_enabled)"/>
+  <!-- TF WEB PUB -->
+  <node name="tf2_web_republisher" pkg="tf2_web_republisher" type="tf2_web_republisher" />
+  <!-- ROSBRIDGE -->
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
+     <arg name="port" value="9090"/>
   </include>
+
+  <node name="web_video_server" pkg="web_video_server" type="web_video_server" port="9999" output="screen"/>
+  <!--<node name="nodelet_standalone" pkg="nodelet" name="standalone" >-->
+
+  <node name="depthcloud_encoder" pkg="depthcloud_encoder" type="depthcloud_encoder_node">
+   <param name="depth" value="/rgbd_camera/depth/image_raw" />
+   <param name="rgb" value="rgbd_camera/rgb/image_raw" />
+  </node>
+  <!--<node name="web_video_server" pkg="depthcloud_encoder" type="depthcloud_encoder_node" 
+        depth="/camera/depth_registered/image_float" rgb="/camera/rgb/image_rect_color" />-->
+  <!--<node name="nodelet" pkg="nodelet" type="standalone" 
+        depth_image_proc/convert_metric image_raw:=/camera/depth_registered/image_raw
+        image:=/camera/depth_registered/image_float /> -->
 
 </launch>

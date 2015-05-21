@@ -25,28 +25,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
 
-  <arg name="rgbd_enabled" default="false"/>
-  <arg name="joystick_enabled" default="false"/>
+  <arg name="rgbd_enabled" default="true"/>
 
-  <!-- Load unav hardware interface -->
-  <include file="$(find dude_control)/launch/include/driver.launch" />
-  
-  <!-- load RDBG camera and laser scan -->
-  <group if="$(arg rgbd_enabled)">
-    <include file="$(find dude_control)/launch/include/rgbd.launch" />
-  </group>
-
-  <!-- Launch IMU sensor -->
-  <include file="$(find dude_control)/launch/include/imu.launch" />
-
-  <!-- Load teleoperation telecontrol -->
-  <group if="$(arg joystick_enabled)">
-  <include file="$(find dude_control)/launch/teleop.launch">
-    <arg name="joystick" default="true" />
+  <include file="$(find dude_demo)/launch/include/bringup.launch">
+    <arg name="rgbd_enabled" value="$(arg rgbd_enabled)"/>
   </include>
-  </group>
 
-  <!-- Load controller and twix-mux -->
-  <include file="$(find dude_control)/launch/control.launch" />
- 
+  <!-- Launch web nodes -->
+  <include file="$(find dude_demo)/launch/include/web.launch">
+
 </launch>
