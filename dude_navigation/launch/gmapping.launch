@@ -34,7 +34,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
       maxUrange: 2.9 # Should be just less than sensor range
       maxRange: 3.1 # Should be just greater than sensor range
-      particles: 80 # Increased from 80
+      particles: 100 # Increased from 80
 
       # Update frequencies
       linearUpdate: 0.25
@@ -47,7 +47,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       ymin: -10.0
       xmax: 10.0
       ymax: 10.0
-      delta: 0.05
+      delta: 0.04
 
       # All default
       sigma: 0.05
