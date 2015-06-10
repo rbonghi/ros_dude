@@ -31,14 +31,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" > 
      <arg name="port" value="9090"/>
   </include>
+  <node name="web_proxy" pkg="interactive_marker_proxy" type="proxy">
+    <remap from="topic_ns" to="/twist_marker_server"/>
+    <remap from="target_frame" to="base_link"/>
+  </node>
 
-  <node name="web_video_server" pkg="web_video_server" type="web_video_server" port="9999" output="screen"/>
+  <!--<node name="web_video_server" pkg="web_video_server" type="web_video_server" port="9999" output="screen"/>-->
   <!--<node name="nodelet_standalone" pkg="nodelet" name="standalone" >-->
 
-  <node name="depthcloud_encoder" pkg="depthcloud_encoder" type="depthcloud_encoder_node">
+ <!--<node name="depthcloud_encoder" pkg="depthcloud_encoder" type="depthcloud_encoder_node">
    <param name="depth" value="/rgbd_camera/depth/image_raw" />
    <param name="rgb" value="rgbd_camera/rgb/image_raw" />
-  </node>
+  </node>-->
   <!--<node name="web_video_server" pkg="depthcloud_encoder" type="depthcloud_encoder_node" 
         depth="/camera/depth_registered/image_float" rgb="/camera/rgb/image_rect_color" />-->
   <!--<node name="nodelet" pkg="nodelet" type="standalone" 
