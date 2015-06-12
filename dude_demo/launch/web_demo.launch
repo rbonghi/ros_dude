@@ -32,6 +32,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </include>
 
   <!-- Launch web nodes -->
-  <include file="$(find dude_demo)/launch/include/web.launch">
+  <include file="$(find dude_demo)/launch/include/web.launch" />
 
 </launch>
