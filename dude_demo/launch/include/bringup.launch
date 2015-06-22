@@ -41,9 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   <!-- Load teleoperation telecontrol -->
   <group if="$(arg joystick_enabled)">
-  <include file="$(find dude_control)/launch/teleop.launch">
-    <arg name="joystick" default="true" />
-  </include>
+  <include file="$(find dude_control)/launch/teleop.launch" />
   </group>
 
   <!-- Load controller and twix-mux -->
