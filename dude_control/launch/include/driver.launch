@@ -32,17 +32,20 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- ORBus harware driver -->
     <node pkg="orbus_interface" type="hardware_unav" name="unav" output="screen">
         <rosparam command="load" file="$(find dude_control)/config/dude.yaml" />
-        <!--<rosparam subst_value="true">
+        <rosparam subst_value="true">
             serial_port: $(arg port)
-            serial_rate: 115000
+            serial_rate: 115200
 
             control_frequency: 10.0
             diagnostic_frequency: 1.0
-        </rosparam>-->
+        </rosparam>
     </node>
 
+  <!-- Load controller and twix-mux -->
+  <include file="$(find dude_control)/launch/control.launch" />
+
     <!-- Diagnostic Aggregator -->
-    <!--<node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+<!--    <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
         <rosparam command="load" file="$(find dude_control)/config/diagnostics.yaml"/>
     </node>-->
 

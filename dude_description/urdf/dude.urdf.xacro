@@ -220,10 +220,10 @@
   <!-- Asus Xtion Pro Live --> 
 
   <!-- Wheels -->
-  <xacro:banebots_wheel position="Left" reflect="-1">
+  <xacro:banebots_wheel position="left_joint" reflect="-1">
     <origin xyz="${wheel_offset_x} ${-wheel_offset_y} ${wheel_offset_z}" rpy="${M_PI/2} 0 0" />
   </xacro:banebots_wheel>
-  <xacro:banebots_wheel position="Right" reflect="1">
+  <xacro:banebots_wheel position="right_joint" reflect="1">
     <origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="${-M_PI/2} 0 0" />
   </xacro:banebots_wheel>
   <!-- Wheels -->

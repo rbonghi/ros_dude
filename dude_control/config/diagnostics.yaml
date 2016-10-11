@@ -1,10 +1,6 @@
 analyzers:
   computers:
     type: GenericAnalyzer
-    path: Computers
+    path: unav
     contains: [
-      'HD Temp',
-      'CPU Usage',
-      'CPU Temperature',
-      'HD Usage',
-      'NFS']
+      'motor']
