@@ -35,9 +35,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <rosparam subst_value="true">
             serial_port: $(arg port)
             serial_rate: 115200
-
-            control_frequency: 10.0
-            diagnostic_frequency: 1.0
+            control_frequency: 50.0
+            diagnostic_frequency: 5.0
         </rosparam>
     </node>
 
