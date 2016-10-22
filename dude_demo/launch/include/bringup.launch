@@ -45,6 +45,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   </group>
 
   <!-- Load controller and twix-mux -->
-  <include file="$(find dude_control)/launch/control.launch" />
+  <!--<include file="$(find dude_control)/launch/control.launch" />-->
  
 </launch>
