@@ -1,45 +1,39 @@
 
 joint: [ 'left_joint' , 'right_joint' ]
 
-gpio: [ 1, 1, 1, 1, 0, 1, 1c]
+gpio: [ 1, 1, 1, 1, 0, 1, 1]
 
 left_joint:
+  number: 0
   bridge: {PWM_dead_zone: 0.0, PWM_frequency: 1, h_bridge_enable: 1,
       current_offset: 0.8425, current_gain: 0.0623, 
       volt_gain: 6.7318, volt_offset: 0.0}
   diagnostic:
-    current: {critical: 2.0, warning: 1.0}
-    temperature: {critical: 50.0, warning: 30.0}
+    current: {warning: 1.0, critical: 2.0, timeout: 1000, autorestore: 500}
+    temperature: {critical: 50.0, warning: 30.0, timeout: 1000, autorestore: 500}
   emergency: {Bridge_off: 2.0, Slope_time: 1.0, Timeout: 500}
   encoder: {CPR: 300, channels: 2, position: 1, z_index: 0}
+  limits: {position: 6.28, velocity: 15.0, current: 5.0, effort: 20.0, PWM: 100.0}
   pid:
-#    current: {Enable: true, Frequency: 10000, Kp: 10, Ki: 0.0, Kd: 5.0, Kaw: 1.0} # GOOD ALONE
-#    current: {Enable: true, Frequency: 10000, Kp: 14, Ki: 0.0, Kd: 5.0, Kaw: 1.0} # GOOD DOUBLE
     current: {Enable: true, Frequency: 32000, Kp: 5.0, Ki: 0.001, Kd: 2.0, Kaw: 0.005}
-#    velocity: {Enable: true, Frequency: 1000, Kp: 15, Ki: 0.5, Kd: 0.0, Kaw: 0.0} # GOOD ALONE
-#    velocity: {Enable: true, Frequency: 1000, Kp: 15, Ki: 8.0, Kd: 0.2, Kaw: 0.0} # GOOD DOUBLE
-    velocity: {Enable: true, Frequency: 1000, Kp: 8, Ki: 0.8, Kd: 0.0, Kaw: 0.0}
+    velocity: {Enable: true, Frequency: 1000, Kp: 8, Ki: 0.8, Kd: 0.0, Kaw: 0.05}
   ratio: 30.0
   rotation: 1
 
 right_joint:
+  number: 1
   bridge: {PWM_dead_zone: 0.0, PWM_frequency: 1, h_bridge_enable: 1,
       current_offset: 0.8425, current_gain: 0.0623, 
       volt_gain: 6.7318, volt_offset: 0.0}
   diagnostic:
-    current: {critical: 2.0, warning: 1.0}
-    temperature: {critical: 50.0, warning: 30.0}
+    current: {warning: 1.0, critical: 2.0, timeout: 1000, autorestore: 500}
+    temperature: {critical: 50.0, warning: 30.0, timeout: 1000, autorestore: 500}
   emergency: {Bridge_off: 2.0, Slope_time: 1.0, Timeout: 500}
   encoder: {CPR: 300, channels: 2, position: 1, z_index: 0}
+  limits: {position: 6.28, velocity: 15.0, current: 5.0, effort: 20.0, PWM: 100.0}
   pid:
-#    current: {Enable: true, Frequency: 10000, Kp: 10, Ki: 0.0, Kd: 5.0, Kaw: 1.0} # GOOD ALONE
-#    current: {Enable: true, Frequency: 10000, Kp: 14, Ki: 0.0, Kd: 5.0, Kaw: 1.0} # GOOD DOUBLE
     current: {Enable: true, Frequency: 32000, Kp: 5.0, Ki: 0.001, Kd: 2.0, Kaw: 0.005}
-#    velocity: {Enable: true, Frequency: 1000, Kp: 15, Ki: 0.5, Kd: 0.0, Kaw: 0.0} # GOOD ALONE
-#    velocity: {Enable: true, Frequency: 1000, Kp: 15, Ki: 8.0, Kd: 0.2, Kaw: 0.0} # GOOD DOUBLE
-    velocity: {Enable: true, Frequency: 1000, Kp: 8, Ki: 0.8, Kd: 0.0, Kaw: 0.0}
+    velocity: {Enable: true, Frequency: 1000, Kp: 8, Ki: 0.8, Kd: 0.0, Kaw: 0.05}
   ratio: 30.0
   rotation: -1
 
-#    current: {Enable: true, Frequency: 1000, Kp: 15.0, Ki: 0.5, Kd: 0.0}
-#    velocity: {Enable: true, Frequency: 100, Kp: 6, Ki: 1.5, Kd: 0.2}

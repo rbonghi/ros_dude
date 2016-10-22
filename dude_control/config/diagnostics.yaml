@@ -3,4 +3,5 @@ analyzers:
     type: GenericAnalyzer
     path: unav
     contains: [
-      'motor']
+      'board',
+      'joint']
